@@ -35,7 +35,7 @@ class CandidatureController extends AbstractController
             'menu_etapes' => $this->menu_etapes,
             'nbCandidatures'=>$candidatureRepository->countCandidatures(),
             dump($request->attributes->get('_route')),
-            'route'=>$request->attributes->get('_route')
+            'route'=>$request->attributes->get('_route'),
             // 'candParEtape' => $this->candParEtape
         ]);
     }
@@ -136,6 +136,18 @@ class CandidatureController extends AbstractController
             'route'=>$request->attributes->get('_route')
             // 'candParEtape' => $this->candParEtape
 
+        ]);
+    }
+
+    /**
+     * @Route("/candidatures/asc", name="candidature_asc")
+     */
+    public function candidaturesEnvoiAsc(Request $request, $id, EtapeRepository $repo, CandidatureRepository $candidatureRepository){
+        return $this->render('candidature/index.html.twig', [
+            'candidatures' => $candidatureRepository->findBy(array(), array('Date_envoi' => 'asc')),
+            'menu_etapes' => $this->menu_etapes,
+            'nbCandidatures'=>$candidatureRepository->countCandidatures(),
+            'route'=>$request->attributes->get('_route')
         ]);
     }
 
