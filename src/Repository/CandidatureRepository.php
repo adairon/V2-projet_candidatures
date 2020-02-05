@@ -56,10 +56,4 @@ class CandidatureRepository extends ServiceEntityRepository
         return (int) $qb->getQuery()->getSingleScalarResult();
     }
 
-    public function candidaturesEnvoiAsc()
-    {
-        return $this->createQueryBuilder('c')
-            ->orderBy('c.Date_envoi', 'ASC');
-    }
-
 }
