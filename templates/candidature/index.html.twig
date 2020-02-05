@@ -52,7 +52,11 @@
                     <div class="card-header">
                 {% endif %}
 
-                    {{ candidature.etape.etape }} {# <br> <hr> #}
+                    {{ candidature.etape.etape }} <br>
+                    <span class="small">
+                        (Maj le {{ candidature.MiseAJour ? candidature.MiseAJour|date('d/m/Y') : '' }})
+                    </span>
+                    {# <br> <hr> #}
                     {# envoyée le : {{ candidature.DateEnvoi ? candidature.DateEnvoi|date('d/m/Y') : '' }} #}
                 </div>
                     <div class="card-body">
@@ -75,7 +79,7 @@
                     </div>
                 </div>
                 <div class="card-footer text-muted">
-                    Mise à jour le : {{ candidature.MiseAJour ? candidature.MiseAJour|date('d/m/Y') : '' }}
+                    candidature envoyée le : {{ candidature.DateEnvoi ? candidature.DateEnvoi|date('d/m/Y') : '' }}
                 </div>
             </div>
             
