@@ -53,6 +53,7 @@ class CandidatureType extends AbstractType
             ])
             ->add('Localisation', TextType::class,[
                 'attr' => [
+                    'required' => false,
                     'placeholder' => 'Dans quelle ville ?'
                 ]
             ])
@@ -65,6 +66,7 @@ class CandidatureType extends AbstractType
             ])
             ->add('Plateforme', TextType::class,[
                 'attr' => [
+                    'required' => false,
                     'placeholder' => 'candidature via quelle plateforme ?'
                 ]
             ])
