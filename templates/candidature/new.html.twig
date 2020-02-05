@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent ()}} - nouvelle candidature{% endblock %}
+
+{% block body %}
+
+
+<div class="block-body">
+    <div class="container new-container">
+        <div class="col-9 justify-content-center m-auto">
+            <div class="card card-header align-items-center">
+                <h1>Créer une nouvelle Candidature</h1>
+            </div>
+            {{ include('candidature/_form.html.twig') }}
+            {# <button type="button" class="btn btn-secondary">
+                <a href="{{ path('candidature_index') }}">Retour à la liste</a>
+            </button> #}
+        </div>
+    </div>
+</div>
+{% endblock %}

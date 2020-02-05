@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent ()}} - éditer candidature{% endblock %}
+
+{% block body %}
+{# <header>
+</header> #}
+    <div class="block-body">
+        <div class="container edit-container">
+            <div class="col-9 justify-content-center m-auto">
+
+            {% if candidature.etape.etape == 'Candidature refusée' %}
+                    <div class="card card-header bg-danger align-items-center">
+                
+                {% elseif candidature.etape.etape == 'Candidature retenue' %}
+                    <div class="card card-header bg-success align-items-center">
+                
+                {% elseif candidature.etape.etape == 'Attente réponse' %}
+                    <div class="card card-header bg-warning align-items-center">
+                
+                {% elseif candidature.etape.etape == 'Entretien à venir' %}
+                    <div class="card card-header bg-primary align-items-center">
+
+                {% else %}
+                    <div class="card card-header align-items-center">
+                {% endif %}
+                    Éditez votre candidature au poste de
+                    <h3>{{ candidature.Poste }} </h3>
+                    chez {{ candidature.Entreprise }}
+                </div>
+                {{ include('candidature/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+                {{ include('candidature/_delete_form.html.twig') }}
+            </div>
+
+            {# <button type="button" class="btn btn-secondary">
+                <a href="{{ path('candidature_index') }}">Retour à la liste</a>
+            </button> #}
+        </div>
+    </div>
+{% endblock %}

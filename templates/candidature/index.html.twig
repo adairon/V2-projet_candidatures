@@ -1,0 +1,135 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ parent ()}} - Accueil{% endblock %}
+
+{% block body %}
+
+<header>
+    <div class="header-text">
+        <h1>Mes Candidatures</h1>
+        <h>Retrouvez toutes vos candidatures en 1 seul clic !</h>
+    </div>
+</header>
+
+<div class="block-body">
+<div class="container main-container">
+
+    
+    {# présentation sous forme de cartes #}
+        {% for candidature in candidatures %}
+
+            {# conditions pour modifier la couleur des cartes en fonction de l'étape #}
+
+            {% if candidature.etape.etape == 'Candidature refusée' %}
+                <div class="card border-danger text-center col-9">
+            
+            {% elseif candidature.etape.etape == 'Candidature retenue' %}
+                <div class="card border-success text-center col-9">
+            
+            {% elseif candidature.etape.etape == 'Attente réponse' %}
+                <div class="card border-warning text-center col-9">
+            
+            {% elseif candidature.etape.etape == 'Entretien à venir' %}
+                <div class="card border-primary text-center col-9">
+
+            {% else %}
+                 <div class="card text-center col-9">
+            {% endif %}
+
+                {% if candidature.etape.etape == 'Candidature refusée' %}
+                    <div class="card-header bg-danger">
+                
+                {% elseif candidature.etape.etape == 'Candidature retenue' %}
+                    <div class="card-header bg-success">
+                
+                {% elseif candidature.etape.etape == 'Attente réponse' %}
+                    <div class="card-header bg-warning">
+                
+                {% elseif candidature.etape.etape == 'Entretien à venir' %}
+                    <div class="card-header bg-primary">
+
+                {% else %}
+                    <div class="card-header">
+                {% endif %}
+
+                    {{ candidature.etape.etape }} {# <br> <hr> #}
+                    {# envoyée le : {{ candidature.DateEnvoi ? candidature.DateEnvoi|date('d/m/Y') : '' }} #}
+                </div>
+                    <div class="card-body">
+
+                    <div class="row align-items-center">
+                        <div class="card-title col-8 text-align-left">
+                            <h6>{{ candidature.Contrat }}</h6>
+                            <h5>{{ candidature.Poste }}</h5>
+                            {{ candidature.Entreprise }} <br>
+                        </div>
+                            {# ({{ candidature.Localisation }}) #}
+                        {# <p class="card-text">
+                            Plateforme d'envoi : {{ candidature.Plateforme }}
+                        </p>
+                        <h5>Actions :</h5> #}
+                        <p class="card-text col-4">
+                            <a href="{{ path('candidature_show', {'id': candidature.id}) }}" class="btn btn-info">voir</a>
+                            <a href="{{ path('candidature_edit', {'id': candidature.id}) }}" class="btn btn-warning">éditer</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    Mise à jour le : {{ candidature.MiseAJour ? candidature.MiseAJour|date('d/m/Y') : '' }}
+                </div>
+            </div>
+            
+        {% else %}
+            <tr>
+                <td colspan="11">Aucune candidature trouvée</td>
+            </tr>
+        {% endfor %}
+
+{#  Présentation par défaut : sous forme de tableau  
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Poste</th>
+                <th>Entreprise</th>
+                <th>Contrat</th>
+                <th>Localisation</th>
+                <th>Date d'envoi</th>
+                <th>Lien</th>
+                <th>Plateforme</th>
+                <th>Statut</th>
+                <th>Mise à jour le</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for candidature in candidatures %}
+            <tr>
+                <td>{{ candidature.Poste }}</td>
+                <td>{{ candidature.Entreprise }}</td>
+                <td>{{ candidature.Contrat }}</td>
+                <td>{{ candidature.Localisation }}</td>
+                <td>{{ candidature.DateEnvoi ? candidature.DateEnvoi|date('d/m/Y') : '' }}</td>
+                <td>{{ candidature.Lien }}</td>
+                <td>{{ candidature.Plateforme }}</td>
+                <td>{{ candidature.Statut }}</td>
+                <td>{{ candidature.MiseAJour ? candidature.MiseAJour|date('d/m/Y') : '' }}</td>
+                <td>
+                    <a href="{{ path('candidature_show', {'id': candidature.id}) }}" class="btn btn-info">voir</a>
+                </td>
+                <td>
+                    <a href="{{ path('candidature_edit', {'id': candidature.id}) }}" class="btn btn-warning">éditer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">Aucune candidature trouvée</td>
+            </tr>
+        {% endfor %} 
+        </tbody>
+    </table>
+#}
+
+</div>
+</div>
+{% endblock %}

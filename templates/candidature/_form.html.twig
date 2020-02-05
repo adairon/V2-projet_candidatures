@@ -1,0 +1,8 @@
+<div class="form-row justify-content-center">
+    <div class="col-8">
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
+        {{ form_end(form) }}
+    </div>
+</div>

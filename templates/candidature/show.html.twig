@@ -1,0 +1,135 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent ()}} - détails candidature {% endblock %}
+
+{% block body %}
+
+    <div class="block-body">
+        <div class="container show-candidature">
+        
+
+            {# conditions pour modifier la couleur des cartes en fonction de l'étape #}
+
+            {% if candidature.etape.etape == 'Candidature refusée' %}
+                <div class="card border-danger text-center col-9">
+            
+            {% elseif candidature.etape.etape == 'Candidature retenue' %}
+                <div class="card border-success text-center col-9">
+            
+            {% elseif candidature.etape.etape == 'Attente réponse' %}
+                <div class="card border-warning text-center col-9">
+            
+            {% elseif candidature.etape.etape == 'Entretien à venir' %}
+                <div class="card border-primary text-center col-9">
+
+            {% else %}
+                 <div class="card text-center col-9">
+            {% endif %}
+
+                {% if candidature.etape.etape == 'Candidature refusée' %}
+                    <div class="card-header bg-danger">
+                
+                {% elseif candidature.etape.etape == 'Candidature retenue' %}
+                    <div class="card-header bg-success">
+                
+                {% elseif candidature.etape.etape == 'Attente réponse' %}
+                    <div class="card-header bg-warning">
+                
+                {% elseif candidature.etape.etape == 'Entretien à venir' %}
+                    <div class="card-header bg-primary">
+
+                {% else %}
+                    <div class="card-header">
+                {% endif %}
+                    {{ candidature.etape.etape }}                    
+                </div>
+
+                <div class="card-body">
+
+                    <h3 class="card-title">
+                        {{ candidature.Poste }} ({{ candidature.Contrat }}) <br>
+                    </h3>
+                    <h4>{{ candidature.Entreprise }} - {{ candidature.Localisation }}</h4>
+
+                    <p class="card-text">
+                        Plateforme d'envoi : <br>
+                        {{ candidature.Plateforme }}
+                    </p>
+
+                    <p class="card-text">
+                        Lien vers l'annonce : <br>
+                        <a href="{{ candidature.Lien }}">{{ candidature.Lien }}</a>
+                    </p>
+                        
+                    <h5>Actions :</h5>
+                    <p class="card-text">
+                        <a href="{{ path('candidature_edit', {'id': candidature.id}) }}" class="btn btn-warning">éditer</a>
+                        {{ include('candidature/_delete_form.html.twig') }}
+                    </p>
+                </div>
+
+                <div class="card-footer text-muted">
+                    envoyée le : {{ candidature.DateEnvoi ? candidature.DateEnvoi|date('d/m/Y') : '' }} <br>
+                    Mise à jour le : {{ candidature.MiseAJour ? candidature.MiseAJour|date('d/m/Y') : '' }}
+                </div>
+            </div>
+
+            {# <button type="button" class="btn btn-secondary">
+                <a href="{{ path('candidature_index') }}">Retour à la liste</a>
+            </button> #}
+        </div>
+    </div>
+
+    {# <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ candidature.id }}</td>
+            </tr>
+            <tr>
+                <th>Poste</th>
+                <td>{{ candidature.Poste }}</td>
+            </tr>
+            <tr>
+                <th>Entreprise</th>
+                <td>{{ candidature.Entreprise }}</td>
+            </tr>
+            <tr>
+                <th>Contrat</th>
+                <td>{{ candidature.Contrat }}</td>
+            </tr>
+            <tr>
+                <th>Localisation</th>
+                <td>{{ candidature.Localisation }}</td>
+            </tr>
+            <tr>
+                <th>Date_envoi</th>
+                <td>{{ candidature.DateEnvoi ? candidature.DateEnvoi|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Lien</th>
+                <td>{{ candidature.Lien }}</td>
+            </tr>
+            <tr>
+                <th>Plateforme</th>
+                <td>{{ candidature.Plateforme }}</td>
+            </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{{ candidature.Statut }}</td>
+            </tr>
+            <tr>
+                <th>Mise_a_jour</th>
+                <td>{{ candidature.MiseAJour ? candidature.MiseAJour|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table> #}
+    {# <button type="button" class="btn btn-secondary">
+        <a href="{{ path('candidature_index') }}">Retour à la liste</a>
+    </button> #}
+
+    {# <a href="{{ path('candidature_edit', {'id': candidature.id}) }}">edit</a>
+
+    {{ include('candidature/_delete_form.html.twig') }} #}
+    
+{% endblock %}

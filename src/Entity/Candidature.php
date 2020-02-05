@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CandidatureRepository")
@@ -60,6 +61,14 @@ class Candidature
      * @ORM\ManyToOne(targetEntity="App\Entity\Etape", inversedBy="candidatures")
      */
     private $etape;
+
+    public function __construct()
+    {
+        $this->Rdv = new ArrayCollection();
+        $now = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
+        $this->setDateEnvoi($now);
+        $this->setMiseAJour($now);
+    }
 
     public function getId(): ?int
     {

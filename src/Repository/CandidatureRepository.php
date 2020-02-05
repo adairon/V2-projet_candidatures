@@ -47,4 +47,13 @@ class CandidatureRepository extends ServiceEntityRepository
         ;
     }
     */
+    
+    //Fonction comptant le nombre total de candidatures dans la base (à appeler dans le controlleur):
+    public function countCandidatures()
+    {
+        $qb = $this->createQueryBuilder('e');
+        $qb ->select($qb->expr()->count('e'));
+        return (int) $qb->getQuery()->getSingleScalarResult();
+    }
+
 }
