@@ -1,6 +1,6 @@
 <div class="sidebar bg-dark">
     
-    <a href="{{ path('candidature_new') }}" class="btn btn-primary new-candidature">Nouvelle candidature</a>
+    {# <a href="{{ path('candidature_new') }}" class="btn btn-primary new-candidature">Nouvelle candidature</a> #}
     {# affichage du bouton pour revenir à la liste sauf sur l'index : #}
     {# affichage du menu déroulant du filtre par étape uniqueùment sur la page index :#}
     {% if route == 'candidature_index' %}
@@ -42,19 +42,19 @@
         {% for candidature in candidatures %}
             <a href="{{ path('candidature_show', {'id': candidature.id}) }}">
                 {% if candidature.etape.etape == 'Candidature refusée' %}
-                    <div class="card border-danger text-danger align-items-center m-1">
+                    <div class="card border-danger text-danger align-items-center m-1 bg-dark">
                 
                 {% elseif candidature.etape.etape == 'Candidature retenue' %}
-                    <div class="card border-success text-success align-items-center m-1">
+                    <div class="card border-success text-success align-items-center m-1 bg-dark">
                 
                 {% elseif candidature.etape.etape == 'Attente réponse' %}
-                    <div class="card border-warning text-warning align-items-center m-1">
+                    <div class="card border-warning text-warning align-items-center m-1 bg-dark">
                 
                 {% elseif candidature.etape.etape == 'Entretien à venir' %}
-                    <div class="card border-primary text-primary align-items-center m-1">
+                    <div class="card border-primary text-primary align-items-center m-1 bg-dark">
 
                 {% else %}
-                    <div class="card align-items-center text-secondary m-1">
+                    <div class="card align-items-center text-secondary m-1 bg-dark">
                 {% endif %}
                     {{ candidature.Poste }} <br>
                     {{ candidature.Entreprise }}

@@ -4,7 +4,7 @@ body{
     background-size: cover;
     background-position: center center;
     background-repeat: repeat;*/
-    /* background-color: rgba(52, 58, 64, 0.3);  */
+    background-color: rgba(218, 218, 218, 0.3); 
     margin-top: 3rem; /*pour compenser la taille de la navbar*/
     
 }
@@ -48,7 +48,7 @@ header{
     background-size: cover;
     background-position: 0% 60%;
     position: relative;
-    margin-left: 150px;
+    margin-left: 200px;
 }
 
 .header-text{
@@ -77,7 +77,7 @@ header{
     height: 100vh;
     width: 200px; 
     margin-top: 56px; /*on décalle vers le bas de la hauteur de la navbar*/
-    padding-top: 20px;
+    padding-top: 40px;
     display: flex;
     flex-direction: column;
     align-content: center;
