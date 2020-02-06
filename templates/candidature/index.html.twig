@@ -12,28 +12,174 @@
 </header>
 
 <div class="block-body">
-<div class="container main-container">
 
-    
-    {# présentation sous forme de cartes #}
+<div class="container main-container d-flex flex-column">    
+    {# présentation sous forme de cartes -- tri par défaut #}
         {% for candidature in candidatures %}
 
             {# conditions pour modifier la couleur des cartes en fonction de l'étape #}
 
             {% if candidature.etape.etape == 'Candidature refusée' %}
-                <div class="card border-danger text-center col-9">
+                <div class="card border-danger text-center col-9 cardDef" style="display:block" data-index="{{ candidature.DateEnvoi ? candidature.DateEnvoi|date('Ymd') : ''  }}">
             
             {% elseif candidature.etape.etape == 'Candidature retenue' %}
-                <div class="card border-success text-center col-9">
+                <div class="card border-success text-center col-9 cardDef" style="display:block" data-index="{{ candidature.DateEnvoi ? candidature.DateEnvoi|date('Ymd') : ''  }}">
             
             {% elseif candidature.etape.etape == 'Attente réponse' %}
-                <div class="card border-warning text-center col-9">
+                <div class="card border-warning text-center col-9 cardDef" style="display:block" data-index="{{ candidature.DateEnvoi ? candidature.DateEnvoi|date('Ymd') : ''  }}">
             
             {% elseif candidature.etape.etape == 'Entretien à venir' %}
-                <div class="card border-primary text-center col-9">
+                <div class="card border-primary text-center col-9 cardDef" style="display:block" data-index="{{ candidature.DateEnvoi ? candidature.DateEnvoi|date('Ymd') : ''  }}">
 
             {% else %}
-                 <div class="card text-center col-9">
+                 <div class="card text-center col-9 cardDef" style="display:block" data-index="{{ candidature.DateEnvoi ? candidature.DateEnvoi|date('Ymd') : ''  }}">
+            {% endif %}
+
+                {% if candidature.etape.etape == 'Candidature refusée' %}
+                    <div class="card-header bg-danger">
+                
+                {% elseif candidature.etape.etape == 'Candidature retenue' %}
+                    <div class="card-header bg-success">
+                
+                {% elseif candidature.etape.etape == 'Attente réponse' %}
+                    <div class="card-header bg-warning">
+                
+                {% elseif candidature.etape.etape == 'Entretien à venir' %}
+                    <div class="card-header bg-primary">
+
+                {% else %}
+                    <div class="card-header">
+                {% endif %}
+
+                    {{ candidature.etape.etape }} <br>
+                    <span class="small">
+                        (Maj le {{ candidature.MiseAJour ? candidature.MiseAJour|date('d/m/Y') : '' }})
+                    </span>
+                    {# <br> <hr> #}
+                    {# envoyée le : {{ candidature.DateEnvoi ? candidature.DateEnvoi|date('d/m/Y') : '' }} #}
+                </div>
+                    <div class="card-body">
+
+                    <div class="row align-items-center">
+                        <div class="card-title col-8 text-align-left">
+                            <h6>{{ candidature.Contrat }}</h6>
+                            <h5>{{ candidature.Poste }}</h5>
+                            {{ candidature.Entreprise }} <br>
+                        </div>
+                            {# ({{ candidature.Localisation }}) #}
+                        {# <p class="card-text">
+                            Plateforme d'envoi : {{ candidature.Plateforme }}
+                        </p>
+                        <h5>Actions :</h5> #}
+                        <p class="card-text col-4">
+                            <a href="{{ path('candidature_show', {'id': candidature.id}) }}" class="btn btn-info">voir</a>
+                            <a href="{{ path('candidature_edit', {'id': candidature.id}) }}" class="btn btn-warning">éditer</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    candidature envoyée le : {{ candidature.DateEnvoi ? candidature.DateEnvoi|date('d/m/Y') : '' }}
+                </div>
+            </div>
+            
+        {% else %}
+            <tr>
+                <td colspan="11">Aucune candidature trouvée</td>
+            </tr>
+        {% endfor %}
+{# présentation sous forme de cartes -- tri Décroissant #}
+        {% for candidature in candidaturesDESC %}
+
+            {# conditions pour modifier la couleur des cartes en fonction de l'étape #}
+
+            {% if candidature.etape.etape == 'Candidature refusée' %}
+                <div class="card border-danger text-center col-9 cardDesc" style="display:none" data-index="{{ candidature.DateEnvoi ? candidature.DateEnvoi|date('Ymd') : ''  }}">
+            
+            {% elseif candidature.etape.etape == 'Candidature retenue' %}
+                <div class="card border-success text-center col-9 cardDesc" style="display:none" data-index="{{ candidature.DateEnvoi ? candidature.DateEnvoi|date('Ymd') : ''  }}">
+            
+            {% elseif candidature.etape.etape == 'Attente réponse' %}
+                <div class="card border-warning text-center col-9 cardDesc" style="display:none" data-index="{{ candidature.DateEnvoi ? candidature.DateEnvoi|date('Ymd') : ''  }}">
+            
+            {% elseif candidature.etape.etape == 'Entretien à venir' %}
+                <div class="card border-primary text-center col-9 cardDesc" style="display:none" data-index="{{ candidature.DateEnvoi ? candidature.DateEnvoi|date('Ymd') : ''  }}">
+
+            {% else %}
+                 <div class="card text-center col-9 cardDesc" style="display:none" data-index="{{ candidature.DateEnvoi ? candidature.DateEnvoi|date('Ymd') : ''  }}">
+            {% endif %}
+
+                {% if candidature.etape.etape == 'Candidature refusée' %}
+                    <div class="card-header bg-danger">
+                
+                {% elseif candidature.etape.etape == 'Candidature retenue' %}
+                    <div class="card-header bg-success">
+                
+                {% elseif candidature.etape.etape == 'Attente réponse' %}
+                    <div class="card-header bg-warning">
+                
+                {% elseif candidature.etape.etape == 'Entretien à venir' %}
+                    <div class="card-header bg-primary">
+
+                {% else %}
+                    <div class="card-header">
+                {% endif %}
+
+                    {{ candidature.etape.etape }} <br>
+                    <span class="small">
+                        (Maj le {{ candidature.MiseAJour ? candidature.MiseAJour|date('d/m/Y') : '' }})
+                    </span>
+                    {# <br> <hr> #}
+                    {# envoyée le : {{ candidature.DateEnvoi ? candidature.DateEnvoi|date('d/m/Y') : '' }} #}
+                </div>
+                    <div class="card-body">
+
+                    <div class="row align-items-center">
+                        <div class="card-title col-8 text-align-left">
+                            <h6>{{ candidature.Contrat }}</h6>
+                            <h5>{{ candidature.Poste }}</h5>
+                            {{ candidature.Entreprise }} <br>
+                        </div>
+                            {# ({{ candidature.Localisation }}) #}
+                        {# <p class="card-text">
+                            Plateforme d'envoi : {{ candidature.Plateforme }}
+                        </p>
+                        <h5>Actions :</h5> #}
+                        <p class="card-text col-4">
+                            <a href="{{ path('candidature_show', {'id': candidature.id}) }}" class="btn btn-info">voir</a>
+                            <a href="{{ path('candidature_edit', {'id': candidature.id}) }}" class="btn btn-warning">éditer</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    candidature envoyée le : {{ candidature.DateEnvoi ? candidature.DateEnvoi|date('d/m/Y') : '' }}
+                </div>
+            </div>
+            
+        {% else %}
+            <tr>
+                <td colspan="11">Aucune candidature trouvée</td>
+            </tr>
+        {% endfor %}
+
+{# présentation sous forme de cartes -- tri Croissant #}
+        {% for candidature in candidaturesASC %}
+
+            {# conditions pour modifier la couleur des cartes en fonction de l'étape #}
+
+            {% if candidature.etape.etape == 'Candidature refusée' %}
+                <div class="card border-danger text-center col-9 cardAsc" style="display:none" data-index="{{ candidature.DateEnvoi ? candidature.DateEnvoi|date('Ymd') : ''  }}">
+            
+            {% elseif candidature.etape.etape == 'Candidature retenue' %}
+                <div class="card border-success text-center col-9 cardAsc" style="display:none" data-index="{{ candidature.DateEnvoi ? candidature.DateEnvoi|date('Ymd') : ''  }}">
+            
+            {% elseif candidature.etape.etape == 'Attente réponse' %}
+                <div class="card border-warning text-center col-9 cardAsc" style="display:none" data-index="{{ candidature.DateEnvoi ? candidature.DateEnvoi|date('Ymd') : ''  }}">
+            
+            {% elseif candidature.etape.etape == 'Entretien à venir' %}
+                <div class="card border-primary text-center col-9 cardAsc" style="display:none" data-index="{{ candidature.DateEnvoi ? candidature.DateEnvoi|date('Ymd') : ''  }}">
+
+            {% else %}
+                 <div class="card text-center col-9 cardAsc" style="display:none" data-index="{{ candidature.DateEnvoi ? candidature.DateEnvoi|date('Ymd') : ''  }}">
             {% endif %}
 
                 {% if candidature.etape.etape == 'Candidature refusée' %}
