@@ -18,6 +18,9 @@ const cardsAsc = document.querySelectorAll('.cardAsc')
 const btntriDef = document.querySelector('#tri-def')
 const btntriDesc = document.querySelector('#tri-desc')
 const btntriAsc = document.querySelector('#tri-asc')
+const titreBtn = document.querySelector('.titreBtn')
+
+titreBtn.innerHTML ='Trier par date </br> '
 
 btntriDesc.addEventListener('click', clicDesc)
 function clicDesc(){
@@ -31,6 +34,8 @@ function clicDesc(){
     for (cDesc of cardsDesc){
         cDesc.style.display = "block"
     }
+    titreBtn.innerHTML ='Tri : </br> les plus récentes'
+
 }
 
 btntriAsc.addEventListener('click', clicAsc)
@@ -45,4 +50,5 @@ function clicAsc(){
     for (cAsc of cardsAsc){
         cAsc.style.display = "block"
     }
+    titreBtn.innerHTML ='Tri : </br> les plus anciennes'
 }
