@@ -137,6 +137,14 @@ class CandidatureController extends AbstractController
         return $this->render('candidature/index.html.twig', [
             'lesCandidatures' => $candidatureRepository->findAll(),
             'candidatures' => $candidatures,
+            'candidaturesDESC' => $candidatureRepository->findBy(
+                [],
+                ['Date_envoi' => 'DESC']
+            ),
+            'candidaturesASC' => $candidatureRepository->findBy(
+                [],
+                ['Date_envoi' => 'ASC']
+            ),
             // dump($this->menu_etapes),
             // dump($candidatureRepository->findBy(array('etape'=>$this->menu_etapes))),
             'menu_etapes' => $this->menu_etapes,
