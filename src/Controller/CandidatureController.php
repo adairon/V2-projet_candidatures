@@ -76,7 +76,7 @@ class CandidatureController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="candidature_show", methods={"GET"})
+     * @Route("/{id}", name="candidature_show", methods={"GET"}, requirements={"id":"\d+"})
      */
     public function show(Request $request, Candidature $candidature,CandidatureRepository $candidatureRepository): Response
     {
