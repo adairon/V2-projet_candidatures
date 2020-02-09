@@ -42,7 +42,7 @@ class CandidatureController extends AbstractController
             // dump($this->menu_etapes),
             'menu_etapes' => $this->menu_etapes,
             'nbCandidatures'=>$candidatureRepository->countCandidatures(),
-            // dump($request->attributes->get('_route')),
+            dump($request->attributes->get('_route')),
             'route'=>$request->attributes->get('_route')
             // 'candParEtape' => $this->candParEtape
         ]);
@@ -149,6 +149,7 @@ class CandidatureController extends AbstractController
             // dump($candidatureRepository->findBy(array('etape'=>$this->menu_etapes))),
             'menu_etapes' => $this->menu_etapes,
             'nbCandidatures'=>$candidatureRepository->countCandidatures(),
+            dump($request->attributes->get('_route')),
             'route'=>$request->attributes->get('_route')
             // 'candParEtape' => $this->candParEtape
 

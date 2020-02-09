@@ -1,17 +1,3 @@
-/*const cards = document.querySelectorAll('.card');
-const btntriDesc = document.querySelector('#tri-desc')
-const btntriAsc = document.querySelector('#tri-asc')
-
-btntriDesc.addEventListener('click', clicDesc)
-function clicDesc(){
-    for (card of cards){
-        let indexCard = this.dataset.index;
-        // card.style.order=indexCard
-        console.log(indexCard)
-    }
-
-}*/
-
 const cardsDef = document.querySelectorAll('.cardDef')
 const cardsDesc = document.querySelectorAll('.cardDesc')
 const cardsAsc = document.querySelectorAll('.cardAsc')
@@ -52,3 +38,18 @@ function clicAsc(){
     }
     titreBtn.innerHTML ='Tri : </br> les plus anciennes'
 }
+
+const navEtapes = document.querySelectorAll('.nav-etape')
+const navToutes = document.querySelector('.nav-toutes')
+const navEnv = document.querySelector('.nav-env')
+
+// navToutes.classList.add('active')
+
+if (location.pathname == "/candidatures/6"){
+    navEnv.classList.add('active')
+}
+
+// if (window.location.href.indexOf('candidatures/6')>=0) {
+//     navEnv.classList.add('active');
+// }
+
