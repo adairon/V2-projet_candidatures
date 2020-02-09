@@ -34,8 +34,15 @@ class SecurityController extends AbstractController
     /**
      * @Route("/logout", name="app_logout")
      */
-    public function logout()
+    public function logout(AuthenticationUtils $authenticationUtils, Request $request, CandidatureRepository $candidatureRepository)
     {
+        $error = $authenticationUtils->getLastAuthenticationError();
+        $lastUsername = $authenticationUtils->getLastUsername();
         throw new \Exception('This method can be blank - it will be intercepted by the logout key on your firewall');
+        
+        return $this->render('security/login.html.twig', [
+            'last_username' => $lastUsername, 'error' => $error,
+            'route'=>$request->attributes->get('_route'),
+            ]);
     }
 }
