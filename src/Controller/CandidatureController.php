@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/")
@@ -26,6 +27,7 @@ class CandidatureController extends AbstractController
 
     /**
      * @Route("/", name="candidature_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(Request $request, CandidatureRepository $candidatureRepository): Response
     {
@@ -50,6 +52,7 @@ class CandidatureController extends AbstractController
 
     /**
      * @Route("/new", name="candidature_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request,CandidatureRepository $candidatureRepository): Response
     {
@@ -76,7 +79,8 @@ class CandidatureController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="candidature_show", methods={"GET"})
+     * @Route("/{id}", name="candidature_show", methods={"GET"}, requirements={"id":"\d+"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function show(Request $request, Candidature $candidature,CandidatureRepository $candidatureRepository): Response
     {
@@ -91,6 +95,7 @@ class CandidatureController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="candidature_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Candidature $candidature, CandidatureRepository $candidatureRepository): Response
     {
@@ -115,6 +120,7 @@ class CandidatureController extends AbstractController
 
     /**
      * @Route("/{id}", name="candidature_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Candidature $candidature): Response
     {
@@ -129,6 +135,7 @@ class CandidatureController extends AbstractController
 
     /**
      * @Route("/candidatures/{id}", name="candidature_etape")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function candidatureByEtape(Request $request, $id, EtapeRepository $repo, CandidatureRepository $candidatureRepository){
         $etape = $repo->find($id);
