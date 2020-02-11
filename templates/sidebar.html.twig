@@ -46,19 +46,19 @@
         {% for candidature in candidatures %}
             <a href="{{ path('candidature_show', {'id': candidature.id}) }}">
                 {% if candidature.etape.etape == 'Candidature refusée' %}
-                    <div class="card border-danger text-danger align-items-center m-1 bg-dark">
+                    <div class="card border-danger text-white align-items-center m-0  bg-danger">
                 
                 {% elseif candidature.etape.etape == 'Candidature retenue' %}
-                    <div class="card border-success text-success align-items-center m-1 bg-dark">
+                    <div class="card border-success text-white align-items-center m-0  bg-success">
                 
                 {% elseif candidature.etape.etape == 'Attente réponse' %}
-                    <div class="card border-warning text-warning align-items-center m-1 bg-dark">
+                    <div class="card border-warning text-white align-items-center m-0  bg-warning">
                 
                 {% elseif candidature.etape.etape == 'Entretien à venir' %}
-                    <div class="card border-primary text-primary align-items-center m-1 bg-dark">
+                    <div class="card border-primary text-white align-items-center m-0  bg-primary">
 
                 {% else %}
-                    <div class="card align-items-center text-secondary m-1 bg-dark">
+                    <div class="card align-items-center text-white m-0  bg-secondary">
                 {% endif %}
                     {{ candidature.Poste }} <br>
                     {{ candidature.Entreprise }}
