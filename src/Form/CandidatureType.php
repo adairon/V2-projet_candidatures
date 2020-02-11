@@ -74,7 +74,8 @@ class CandidatureType extends AbstractType
             ->add('etape', EntityType::class,[
                 'class' => Etape::class,
                 'choice_label' => 'etape',
-                'label' => 'Etape de la candidature'
+                'label' => 'Etape de la candidature',
+                'placeholder' => 'Étape de la candidature'
             ])
             
 
