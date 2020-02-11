@@ -62,6 +62,11 @@ class Candidature
      */
     private $etape;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Contrat", inversedBy="candidatures")
+     */
+    private $typeContrat;
+
     public function __construct()
     {
         $now = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
@@ -178,6 +183,18 @@ class Candidature
     public function setEtape(?Etape $etape): self
     {
         $this->etape = $etape;
+
+        return $this;
+    }
+
+    public function getTypeContrat(): ?Contrat
+    {
+        return $this->typeContrat;
+    }
+
+    public function setTypeContrat(?Contrat $typeContrat): self
+    {
+        $this->typeContrat = $typeContrat;
 
         return $this;
     }
