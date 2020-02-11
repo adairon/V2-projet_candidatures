@@ -47,11 +47,14 @@ class CandidatureType extends AbstractType
                     'placeholder' => 'Dans quelle entreprise ?'
                 ]
             ])
-            ->add('Contrat', EntityType::class,[
+
+            ->add('contrat', EntityType::class,[
                 'class' => Contrat::class,
                 'choice_label' => 'type',
                 'label' => 'Type de contrat',
+                'placeholder' => 'Type de contrat de travail'
             ])
+
             ->add('Localisation', TextType::class,[
                 'attr' => [
                     'required' => false,
@@ -75,7 +78,8 @@ class CandidatureType extends AbstractType
             ->add('etape', EntityType::class,[
                 'class' => Etape::class,
                 'choice_label' => 'etape',
-                'label' => 'Etape de la candidature'
+                'label' => 'Etape de la candidature',
+                'placeholder' => 'Étape de la candidature'
             ])
             
 
