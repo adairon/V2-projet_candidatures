@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Candidature;
+use App\Entity\Contrat;
 use App\Entity\Etape;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -46,10 +47,10 @@ class CandidatureType extends AbstractType
                     'placeholder' => 'Dans quelle entreprise ?'
                 ]
             ])
-            ->add('Contrat', TextType::class,[
-                'attr' => [
-                    'placeholder' => 'Type de contrat ?'
-                ]
+            ->add('Contrat', EntityType::class,[
+                'class' => Contrat::class,
+                'choice_label' => 'type',
+                'label' => 'Type de contrat',
             ])
             ->add('Localisation', TextType::class,[
                 'attr' => [
